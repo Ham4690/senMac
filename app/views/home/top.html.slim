@@ -2,7 +2,7 @@
 .card.mt-5.shadow-sm
   h1.card-header.text-center.text-warning.font-weight-bold マクドナルド 1000円ガチャ
   .card-body
-  - if @basket ==  nil
+  - if @itemInfos.empty?
     = link_to 'ガチャを回す' ,"/select", class: 'btn btn-lg btn-outline-warning mx-auto text-dark font-weight-bold my-3 '
   - else
     .mx-3.card
@@ -18,14 +18,25 @@
             th 炭水化物(g)
             th 食物繊維(g)
         tbody
+          - @itemInfos.each do |item|
+            tr
+              td
+              td= item[:name]
+              td= item[:price]
+              td= item[:calorie]
+              td= item[:protein]
+              td= item[:fat]
+              td= item[:carbohydrate]
+              td= item[:dietary_fiber]
+
           tr.table-dark
-            th 
-            th 合計
-            th 
-            th 
-            th 
-            th 
-            th 
-            th 
+            td 
+            td 合計
+            td= @totalCost
+            td= @totalNutrients[:totalCalorie]
+            td= @totalNutrients[:totalProtein] 
+            td= @totalNutrients[:totalFat] 
+            td= @totalNutrients[:totalCarbohydrate] 
+            td= @totalNutrients[:totalDietary_fiber] 
     = link_to 'もう1回チャレンジ' ,"/select", class: 'btn btn-lg btn-outline-warning mx-auto text-dark font-weight-bold my-3'
 

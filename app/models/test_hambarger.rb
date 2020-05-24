@@ -1,0 +1,2 @@
+class TestHambarger < ApplicationRecord
+end
