@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require "csv"
+
+CSV.foreach('db/seeds/csv/testHambarger.csv', headers: true) do |row|
+  TestHambarger.create(
+    name: row['name'],
+    price: row['price'],
+    calorie: row['calorie'],
+    protein: row['protein'],
+    fat: row['fat'],
+    carbohydrate: row['carbohydrate'],
+    dietary_fiber: row['dietary_fiber']
+  )
+end
