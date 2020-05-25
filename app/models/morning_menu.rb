@@ -1,0 +1,2 @@
+class MorningMenu < ApplicationRecord
+end

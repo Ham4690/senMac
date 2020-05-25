@@ -1,0 +1,2 @@
+class LunchMenu < ApplicationRecord
+end
