@@ -30,13 +30,14 @@
               td= item[:dietary_fiber]
 
           tr.table-dark
-            td 
-            td 合計
-            td= @totalCost
-            td= @totalNutrients[:totalCalorie]
-            td= @totalNutrients[:totalProtein] 
-            td= @totalNutrients[:totalFat] 
-            td= @totalNutrients[:totalCarbohydrate] 
-            td= @totalNutrients[:totalDietary_fiber] 
+            th 
+            th 合計
+            th= @totalCost
+            th= @totalNutrients[:totalCalorie].round 
+            th= @totalNutrients[:totalProtein].round(2) 
+            th= @totalNutrients[:totalFat].round(2) 
+            th= @totalNutrients[:totalCarbohydrate].round(2) 
+            th= @totalNutrients[:totalDietary_fiber].round(2) 
+
     = link_to 'もう1回チャレンジ' ,"/select", class: 'btn btn-lg btn-outline-warning mx-auto text-dark font-weight-bold my-3'
 
