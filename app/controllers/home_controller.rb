@@ -5,10 +5,13 @@ class HomeController < ApplicationController
   end
 
   def select
-    dataNum = TestHambarger.count
-    # timeNow = Time.now
+
+    t = Time.now
+    timeNow = t.strftime("%H%M").to_i
+    dbName = checkTime(timeNow)
+    dataNum = dbName.count
     firstId = rand(1..dataNum)
-    item = TestHambarger.find_by id: firstId
+    item = dbName.find_by id: firstId
     
     itemNum = 0
     @goods = []
@@ -17,7 +20,7 @@ class HomeController < ApplicationController
     @totalCost = @itemInfos[itemNum][:price]
     nowMoney = MONEY - @totalCost
     puts nowMoney
-    menu = TestHambarger.where(["price < ?", nowMoney])
+    menu = dbName.where(["price < ?", nowMoney])
 
     while menu.present?
       selectNum = rand(0..menu.count-1)
@@ -27,17 +30,22 @@ class HomeController < ApplicationController
       @totalCost += @itemInfos[itemNum][:price]
       nowMoney = MONEY - @totalCost
       puts nowMoney
-      menu = TestHambarger.where(["price < ?", nowMoney])
+      menu = dbName.where(["price < ?", nowMoney])
     end
 
     @totalNutrients = setTotalNutrients(@itemInfos)
     render "top"
   end
 
-  def isMorning(now)
-  end
 
-  def isDinner(now)
+  def checkTime(now)
+    if 500 < now and now <= 1025
+      return MorningMenu
+    elsif 1025 < now and now <= 1700
+      return LunchMenu
+    else
+      return DinnerMenu
+    end
   end
 
   def setItemInfo(data)
