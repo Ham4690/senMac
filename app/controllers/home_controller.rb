@@ -39,6 +39,7 @@ class HomeController < ApplicationController
 
 
   def checkTime(now)
+    puts now
     if 500 < now and now <= 1025
       return MorningMenu
     elsif 1025 < now and now <= 1700
@@ -50,7 +51,11 @@ class HomeController < ApplicationController
 
   def setItemInfo(data)
     info = {}
-    info[:name] = data.name
+    if data.size 
+      info[:name] = data.name + " (" + data.size + ")"
+    else
+      info[:name] = data.name
+    end
     info[:price] = data.price
     info[:calorie] = data.calorie
     info[:protein] = data.protein
