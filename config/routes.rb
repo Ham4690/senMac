@@ -4,5 +4,11 @@ Rails.application.routes.draw do
   get '/' => "home#top"
   get '/home' => "home#top"
   get '/select' => "home#select"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace 'api' do
+    namespace 'v1' do
+      resources :select, only: [:index]
+    end
+  end
+
 end
