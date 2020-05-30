@@ -70,3 +70,6 @@ gem 'bootstrap'
 
 # csv
 gem 'csv'
+
+# json
+gem 'json'
