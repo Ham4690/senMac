@@ -8,8 +8,8 @@ module Api
         dbName = checkTime(timeNow)
         dataNum = dbName.count
         firstId = rand(1..dataNum)
-
         item = dbName.find_by id: firstId
+
         itemNum = 0
         itemInfos = [setItemInfo(item)]
 
@@ -37,7 +37,7 @@ module Api
         puts JSON.generate(itemInfos)
         puts JSON.generate(totalNutrients)
         
-        render json: { goods: itemInfos, totalCalorie: totalNutrients[:totalCalorie], totalCost: totalCost}
+        render json: { goods: itemInfos, totalCalorie: totalNutrients[:totalCalorie], totalCost: totalCost, dbName: dbName.to_s}
       end
 
 
