@@ -37,7 +37,7 @@ module Api
         puts JSON.generate(itemInfos)
         puts JSON.generate(totalNutrients)
         
-        render json: { goods: itemInfos, total: totalNutrients}
+        render json: { goods: itemInfos, totalCalorie: totalNutrients[:totalCalorie], totalCost: totalCost}
       end
 
 
