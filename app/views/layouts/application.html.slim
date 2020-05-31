@@ -2,13 +2,17 @@ doctype html
 html
   head
     title
-      | SenMac
+      | マクドナルド 1000円ガチャ
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = favicon_link_tag('favicon.icon')
   body
     .app-title.navbar.navbar-expand-md.navbar-light.shadow-sm.bg-light
-      .navbar-brand.text-warning senMac
+      .navbar-brand.text-warning 
+        |
+          1000円マック
+        = icon 'fas', 'hamburger'
     .container
       = yield

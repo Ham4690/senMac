@@ -34,6 +34,7 @@ class HomeController < ApplicationController
     end
 
     @totalNutrients = setTotalNutrients(@itemInfos)
+    @tweet_url = createTweetUrl(@itemInfos, @totalNutrients, @totalCost)
     render "top"
   end
 
@@ -81,6 +82,22 @@ class HomeController < ApplicationController
       info[:totalDietary_fiber] += data[:dietary_fiber]
     end
     return info
+  end
+
+  def createTweetUrl(goodsInfos, totalNutrients, totalCost)
+    baseUrl = "http://twitter.com/intent/tweet?"
+    originUrl = "original_referer=" + request.url
+    viewUrl = "&url=" + request.url
+    hashtags = "&hashtags=マックガチャ,1000円あったらマックへ行こう"
+    text = "1000円マックガチャを回したよ！\n---\n"
+    goodsInfos.each do |goodInfo|
+      text += goodInfo[:name] + "\n"
+    end
+    text += "---\n"
+    main = "&text=" + text + totalCost.to_s + "円, " + totalNutrients[:totalCalorie].to_s + "[kcal]\n\n" 
+    # return URI.encode(baseUrl + originUrl + viewUrl +"&text=" + text + totalCost + "円, " + totalNutrients[:totalCalorie] + "[kcal]")
+    return URI.encode(baseUrl + viewUrl + hashtags + main)
+    # return URI.encode(baseUrl + "text=test\ntest\ntest")
   end
     
 end

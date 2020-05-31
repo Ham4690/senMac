@@ -73,3 +73,6 @@ gem 'csv'
 
 # json
 gem 'json'
+
+# FontAwesome
+gem 'font-awesome-sass', '~> 5.13.0'
